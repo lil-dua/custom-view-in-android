@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Assignment 4</string>
+    <string name="employee_management">QUẢN LÝ NHÂN VIÊN</string>
+    <string name="list_employee">DANH SÁCH NHÂN VIÊN</string>
+    <string name="insert_employee">Nhập nhân viên</string>
+    <string name="female">Nữ</string>
+    <string name="male">Nam</string>
+    <string name="gender">Giới tính:</string>
+    <string name="name">Tên nhân viên</string>
+    <string name="id">Mã nhân viên</string>
+    <string name="user_name">User Name</string>
+</resources>
