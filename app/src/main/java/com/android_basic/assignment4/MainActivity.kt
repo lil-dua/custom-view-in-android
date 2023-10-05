@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity() {
             }else {
                 Toast.makeText(this,"Please enter information!",Toast.LENGTH_SHORT).show()
             }
-
         }
 
         //remove employee selected

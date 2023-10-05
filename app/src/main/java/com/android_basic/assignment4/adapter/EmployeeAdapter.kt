@@ -1,13 +1,8 @@
 package com.android_basic.assignment4.adapter
 
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.android_basic.assignment4.R
+import com.android_basic.assignment4.EmployeeCustomView
 import com.android_basic.assignment4.model.Employee
 
 /***
@@ -15,18 +10,13 @@ import com.android_basic.assignment4.model.Employee
  */
 class EmployeeAdapter (
     private val employeeList: MutableList<Employee>
-) :
-    RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder>(){
+) : RecyclerView.Adapter<EmployeeAdapter.EmployeeViewHolder>(){
 
-    inner class EmployeeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val name: TextView = itemView.findViewById(R.id.text_name)
-        val image: ImageView = itemView.findViewById(R.id.image_Avatar)
-        val checkBox: CheckBox = itemView.findViewById(R.id.checkbox)
-    }
+    class EmployeeViewHolder(val customView: EmployeeCustomView) : RecyclerView.ViewHolder(customView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeeViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.custom_employee_item,parent,false)
-        return EmployeeViewHolder(itemView)
+        val customView = EmployeeCustomView(parent.context)
+        return EmployeeViewHolder(customView)
     }
 
     override fun getItemCount(): Int {
@@ -35,19 +25,7 @@ class EmployeeAdapter (
 
     override fun onBindViewHolder(holder: EmployeeViewHolder, position: Int) {
         val employee = employeeList[position]
-        holder.name.text = buildString {
-            append("NV")
-            append(employee.id)
-            append(" - ")
-            append(employee.name)
-        }
-
-        holder.image.setImageResource(employee.avatar)
-        holder.checkBox.isChecked = employee.isSelected
-
-        holder.checkBox.setOnCheckedChangeListener{ _, isSelected ->
-            employee.isSelected = isSelected
-        }
+        holder.customView.bindData(employee)
     }
 
     fun removeCheckedItems() {
